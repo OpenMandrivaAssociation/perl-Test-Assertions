@@ -1,21 +1,21 @@
 %define upstream_name    Test-Assertions
 %define upstream_version 1.054
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 3
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	4
 
-Summary:    Base for test scripts
-License:    GPL+ or Artistic
-Group:      Development/Perl
-Url:        http://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module/Test/%{upstream_name}-%{upstream_version}.tar.gz
+Summary:	Base for test scripts
+License:	GPL+ or Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/Test/%{upstream_name}-%{upstream_version}.tar.gz
 
-BuildRequires: perl(Carp)
-BuildRequires: perl(Getopt::Long)
-BuildRequires: perl(Log::Trace)
-BuildArch: noarch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRequires:	perl-devel
+BuildRequires:	perl(Carp)
+BuildRequires:	perl(Getopt::Long)
+BuildRequires:	perl(Log::Trace)
+BuildArch:	noarch
 
 %description
 Test::Assertions provides a convenient set of tools for constructing tests,
@@ -41,24 +41,33 @@ tests actually run, e.g.
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
-
-%{make}
+perl Makefile.PL INSTALLDIRS=vendor
+%make
 
 %check
-%{make} test
+%make test
 
 %install
-rm -rf %buildroot
 %makeinstall_std
 
-%clean
-rm -rf %buildroot
-
 %files
-%defattr(-,root,root)
 %doc Changes README
 %{_mandir}/man3/*
-%perl_vendorlib/*
+%{perl_vendorlib}/*
+
+%changelog
+* Mon Apr 25 2011 Funda Wang <fwang@mandriva.org> 1.54.0-3mdv2011.0
++ Revision: 658885
+- rebuild for updated spec-helper
+
+* Tue Jul 13 2010 Jérôme Quelin <jquelin@mandriva.org> 1.54.0-2mdv2011.0
++ Revision: 552179
+- rebuild
+
+* Fri Jul 10 2009 Jérôme Quelin <jquelin@mandriva.org> 1.54.0-1mdv2010.0
++ Revision: 394298
+- import perl-Test-Assertions
 
 
+* Fri Jul 10 2009 cpan2dist 1.054-1mdv
+- initial mdv release, generated with cpan2dist
