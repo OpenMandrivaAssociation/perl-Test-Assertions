@@ -2,14 +2,14 @@
 %define upstream_version 1.054
 
 Name:		perl-%{upstream_name}
-Version:	%perl_convert_version %{upstream_version}
-Release:	6
+Version:	%{upstream_version}
+Release:	7
 
 Summary:	Base for test scripts
 License:	GPL+ or Artistic
 Group:		Development/Perl
-Url:		https://search.cpan.org/dist/%{upstream_name}
-Source0:	http://www.cpan.org/modules/by-module/Test/%{upstream_name}-%{upstream_version}.tar.gz
+Url:		https://metacpan.org/dist/Test-Assertions
+Source0:	https://cpan.metacpan.org/authors/id/B/BB/BBC/Test-Assertions-%{upstream_version}.tar.gz
 
 BuildRequires:	make
 BuildRequires:	perl-devel
